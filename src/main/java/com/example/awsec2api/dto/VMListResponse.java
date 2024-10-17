@@ -1,3 +1,5 @@
+// This DTO is used to return a list of VMs to the client.
+
 package com.example.awsec2api.dto;
 
 import java.util.List;

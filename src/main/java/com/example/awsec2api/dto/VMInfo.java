@@ -1,3 +1,5 @@
+// This DTO is used to represent information about a VM, such as its instance ID and state(sucha as running,stopped,terminated).
+
 package com.example.awsec2api.dto;
 
 public class VMInfo {

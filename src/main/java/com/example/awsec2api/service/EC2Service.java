@@ -1,3 +1,5 @@
+// The EC2Service class is responsible for managing Amazon EC2 instances by interacting with the AWS SDK in a Spring Boot application (creating, Activating, deleting VM's)
+
 package com.example.awsec2api.service;
 
 import com.example.awsec2api.dto.VMInfo;
@@ -60,6 +62,22 @@ public class EC2Service {
         } catch (Ec2Exception e) {
             logger.error("Error retrieving active EC2 instances: {}", e.getMessage());
             throw new EC2Exception("Failed to retrieve active EC2 instances", e);
+        }
+    }
+
+    
+    public String deleteVM(String instanceId) {
+        try {
+            TerminateInstancesRequest terminateRequest = TerminateInstancesRequest.builder()
+                    .instanceIds(instanceId)
+                    .build();
+
+            TerminateInstancesResponse response = ec2Client.terminateInstances(terminateRequest);
+            logger.info("Terminated EC2 instance with ID: {}", instanceId);
+            return "Successfully terminated instance with ID: " + instanceId;
+        } catch (Ec2Exception e) {
+            logger.error("Error terminating EC2 instance: {}", e.getMessage());
+            throw new EC2Exception("Failed to terminate EC2 instance with ID: " + instanceId, e);
         }
     }
 }

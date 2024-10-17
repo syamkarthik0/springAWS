@@ -1,3 +1,5 @@
+// This DTO is used to return the instance ID of a newly created VM to the client.
+
 package com.example.awsec2api.dto;
 
 public class VMCreationResponse {

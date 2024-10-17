@@ -1,3 +1,5 @@
+// This is a generic exception class that handles all other types of exceptions
+
 package com.example.awsec2api.exception;
 
 import org.springframework.http.HttpStatus;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+   // When an exception is thrown, the GlobalExceptionHandler class returns a ResponseEntity with an HTTP status code of 500 (Internal Server Error) and an error message.
     @ExceptionHandler(EC2Exception.class)
     public ResponseEntity<ErrorResponse> handleEC2Exception(EC2Exception ex) {
         ErrorResponse error = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
